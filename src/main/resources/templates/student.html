@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Product Manager</title>
+</head>
+<body>
+<div align="center">
+    <h1>Student Profile</h1>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Student Id</th>
+            <th>Fullname</th>
+            <th>Faculty</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Completed Library Orientation</th>
+            <th>Is Locked</th>
+            <th>From</th>
+            <th>To</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:object="${student}">
+            <td th:text="${student.getStudentId}">Product ID</td>
+            <td th:text="${student.getFullName}">Product ID</td>
+            <td th:text="${student.getFaculty}">Product ID</td>
+            <td th:text="${student.getStudentType}">Product ID</td>
+            <td th:text="${student.getGraduated}">Product ID</td>
+            <td th:text="${student.getTakenLO}">Product ID</td>
+            <td th:text="${student.getViolated}">Product ID</td>
+            <td th:text="${student.getDateStart}">Product ID</td>
+            <td th:text="${student.getDateEnd}">Product ID</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
