@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Patron Manager</title>
+</head>
+<body>
+<div align="center">
+    <h1>Student Profile</h1>
+    <br/><br/>
+    <form >
+        <table border="1" cellpadding="10">
+            <tr>
+                <th>Mã số sinh viên</th>
+                <th><input type="text" th:value="${student.studentId}" /></th>
+            </tr>
+            <tr>
+                <th>Họ và tên</th>
+                <th><input type="text" th:value="${student.fullName}" /></th>
+            </tr>
+            <tr>
+                <th>Khoa</th>
+                <th><input type="text" th:value="${student.faculty}" /></th>
+            </tr>
+            <tr>
+                <th>Đối tượng</th>
+                <th><input type="text" th:value="${student.studentType}" /></th>
+            </tr>
+            <tr>
+                <th>Tình trạng sinh viên</th>
+                <th>
+                    <input type="text" th:value="${student.graduated}" />
+                </th>
+            </tr>
+            <tr>
+                <th>Tập huấn Thư viện</th>
+                <th><input type="text" th:value="${student.takenLO}" /></th>
+            </tr>
+            <tr>
+                <th>Vi phạm nội quy</th>
+                <th><input type="text" th:value="${student.violated}" /></th>
+            </tr>
+            <tr>
+                <th>Thời gian bắt đầu</th>
+                <th><input type="text" th:value="${student.dateStart}" /></th>
+            </tr>
+<!--            <tr>-->
+<!--                <th>Thời gian kết thúc</th>-->
+<!--                <th><input type="text" th:value="${student.dateEnd}" /></th>-->
+<!--            </tr>-->
+        </table>
+        <div align="center"><input type="button" value="Chỉnh sửa thông tin"></div>
+    </form>
+</div>
+</body>
+</html>

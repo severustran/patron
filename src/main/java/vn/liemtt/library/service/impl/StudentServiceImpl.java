@@ -1,6 +1,8 @@
 package vn.liemtt.library.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import vn.liemtt.library.config.ModelMapperConfig;
 import vn.liemtt.library.domain.StudentDTO;
 import vn.liemtt.library.repository.StudentRepository;
 import vn.liemtt.library.repository.entity.StudentEntity;
@@ -13,23 +15,17 @@ import java.util.Objects;
 public class StudentServiceImpl implements StudentService {
 
     private StudentRepository studentRepository;
+    private ModelMapperConfig mapperConfig;
 
-    public StudentServiceImpl(final StudentRepository studentRepository) {
+    public StudentServiceImpl(final StudentRepository studentRepository, final ModelMapperConfig mapperConfig) {
         this.studentRepository = studentRepository;
+        this.mapperConfig = mapperConfig;
     }
 
     @Override
     public void addStudents(final List<StudentDTO> studentDTOList) {
         studentDTOList.forEach(studentDTO -> {
-            StudentEntity studentEntity = new StudentEntity();
-            studentEntity.setStudentId(studentDTO.getStudentId());
-            studentEntity.setStudentType(studentDTO.getStudentType());
-            studentEntity.setFullName(studentDTO.getFullName());
-            studentEntity.setFaculty(studentDTO.getFaculty());
-            studentEntity.setTakenLO(studentDTO.getTakenLO());
-            studentEntity.setGraduated(studentDTO.getGraduated());
-            studentEntity.setDateStart(studentDTO.getDateStart());
-            studentEntity.setDateEnd(studentDTO.getDateEnd());
+            StudentEntity studentEntity = mapperConfig.modelMapper().map(studentDTO, StudentEntity.class);
             this.studentRepository.save(studentEntity);
         });
     }
@@ -40,16 +36,7 @@ public class StudentServiceImpl implements StudentService {
         if (Objects.isNull(studentEntity))
             return null;
         else {
-            StudentDTO dto = new StudentDTO();
-            dto.setStudentId(studentEntity.getStudentId());
-            dto.setStudentType(studentEntity.getStudentType());
-            dto.setFullName(studentEntity.getFullName());
-            dto.setFaculty(studentEntity.getFaculty());
-            dto.setTakenLO(studentEntity.getTakenLO());
-            dto.setGraduated(studentEntity.getGraduated());
-            dto.setViolated(studentEntity.getViolated());
-            dto.setDateStart(studentEntity.getDateStart());
-            dto.setDateEnd(studentEntity.getDateEnd());
+            StudentDTO dto = mapperConfig.modelMapper().map(studentEntity, StudentDTO.class);
             return dto;
         }
     }

@@ -84,4 +84,9 @@ public class StudentDTO {
     public void setDateEnd(final Date dateEnd) {
         this.dateEnd = dateEnd;
     }
+
+    @Override
+    public String toString() {
+        return studentId + '-' + fullName + '-' + dateStart;
+    }
 }

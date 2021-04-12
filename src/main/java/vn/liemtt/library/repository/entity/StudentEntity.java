@@ -1,5 +1,7 @@
 package vn.liemtt.library.repository.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -18,8 +20,10 @@ public class StudentEntity {
     private Boolean isGraduated;
     private Boolean isViolated;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateStart;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateEnd;
 
     public Long getId() {
