@@ -1,8 +1,11 @@
 package vn.liemtt.library.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class StudentDTO {
+    private Long id;
     private String studentId;
     private String fullName;
     private String faculty;
@@ -10,8 +13,18 @@ public class StudentDTO {
     private Boolean isTakenLO;
     private Boolean isGraduated;
     private Boolean isViolated;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateStart;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateEnd;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(final Long id) {
+        this.id = id;
+    }
 
     public String getStudentId() {
         return studentId;

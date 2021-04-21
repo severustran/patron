@@ -40,4 +40,10 @@ public class StudentServiceImpl implements StudentService {
             return dto;
         }
     }
+
+    @Override
+    public void updateStudent(final StudentDTO studentDTO) {
+        StudentEntity entity = mapperConfig.modelMapper().map(studentDTO, StudentEntity.class);
+        this.studentRepository.save(entity);
+    }
 }

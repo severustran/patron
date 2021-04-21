@@ -1,7 +1,5 @@
 package vn.liemtt.library.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +12,12 @@ import java.util.Objects;
 @RequestMapping("/api/student/")
 public class StudentController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
     private static final String STUDENT_DETAIL = "student";
     private static final String ERROR = "error";
     private static final String SEARCH = "search";
     private static final String ADD = "add";
     private static final String STUDENT_EDIT = "student-edit";
+    private static final String STUDENT_EDITED = "student-edited";
 
     private StudentService service;
 
@@ -39,11 +37,32 @@ public class StudentController {
         }
     }
 
-    @PostMapping("student-detail1")
-    public String editStudent(@ModelAttribute("student") StudentDTO studentDTO, Model model) {
-        LOGGER.info(studentDTO.toString());
-        model.addAttribute("student", studentDTO);
+    @PostMapping ("student-detail")
+    public String editStudent(@RequestParam( value = "studentId") String studentId, Model model) {
+        StudentDTO dto = service.findByStudentId(studentId);
+        model.addAttribute("student", dto);
         return STUDENT_EDIT;
+    }
+
+    @PostMapping("temp")
+    public String udpateStudent(@ModelAttribute("student") StudentDTO dto, Model model) {
+        service.updateStudent(dto);
+        model.addAttribute("student", dto);
+//        return STUDENT_EDITED + "?studentId=" + dto.getStudentId();
+        return STUDENT_DETAIL;
+    }
+
+    //TESING
+    @GetMapping("testing-bootstrap")
+    public String testing(@RequestParam(value = "studentId") String studentId, Model model) {
+        StudentDTO dto = service.findByStudentId(studentId);
+        if(Objects.isNull(dto)) {
+            model.addAttribute("student", studentId);
+            return ERROR;
+        } else {
+            model.addAttribute("student", dto);
+            return STUDENT_EDITED;
+        }
     }
 
     @RequestMapping(value = "search")

@@ -17,6 +17,7 @@ public class StudentEntity {
     private String faculty;
     private String studentType;
     private Boolean isTakenLO;
+    @Column(columnDefinition = "boolean default false")
     private Boolean isGraduated;
     private Boolean isViolated;
     @Temporal(TemporalType.DATE)

@@ -14,41 +14,39 @@
     </style>
 </head>
 <body>
+<h1>Thông tin sinh viên</h1>
 <div align="center" class="container">
-    <div align="center">
-        <img src="/images/lib-logo.jpeg" class="image-fluid">
-    </div>
     <form th:action="@{/api/student/student-detail}" method="post">
-        <table class="table table-hover table-striped" width="50%">
+        <table class="table table-hover" width="50%">
             <tbody>
             <tr hidden>
                 <th>Id</th>
                 <th><input type="text" th:value="${student.id}" th:text="${student.id}" hidden
                            th:name="id"/></th>
             </tr>
-            <tr>
+            <tr class="table-info">
                 <th scope="row">Mã số sinh viên</th>
                 <th><input type="text" th:value="${student.studentId}" th:text="${student.getStudentId}" hidden
                            th:name="studentId"/></th>
             </tr>
-            <tr>
+            <tr class="table-info">
                 <th scope="row">Họ và tên</th>
                 <th><input th:text="${student.getFullName}" hidden/></th>
             </tr>
-            <tr>
+            <tr class="table-info">
                 <th scope="row">Khoa</th>
                 <th><input th:text="${student.getFaculty}" hidden/></th>
             </tr>
-            <tr>
+            <tr class="table-info">
                 <th scope="row">Đối tượng</th>
                 <th><input th:text="${student.getStudentType}" hidden/></th>
             </tr>
-            <tr>
+            <tr class="table-info">
                 <th scope="row">Tình trạng sinh viên</th>
                 <th th:if="${student.getGraduated()}"><input th:text="'Đã tốt nghiệp'" hidden/></th>
                 <th th:if="${not student.getGraduated()}"><input th:text="'Chưa tốt nghiệp'" hidden/></th>
             </tr>
-            <tr>
+            <tr class="table-info">
                 <th scope="row">Tập huấn Thư viện</th>
                 <th th:if="${student.getTakenLO()}"><input th:text="'Đã tập huấn'" hidden/></th>
                 <th th:if="${not student.getTakenLO()}"><input th:text="'Chưa tập huấn'" hidden/></th>
@@ -58,19 +56,62 @@
                 <th th:if="${student.getViolated()}"><input th:text="'Vi phạm nội quy'" hidden/></th>
                 <th th:if="${not student.getViolated()}"><input th:text="'Không vi phạm nội quy'" hidden/></th>
             </tr>
-            <tr>
+            <tr class="table-info">
                 <th scope="row">Thời gian bắt đầu</th>
                 <th><input th:text="${#dates.format(student.getDateStart, 'yyyy-MM-dd')}" hidden/></th>
             </tr>
-            <tr>
+            <tr class="table-info">
                 <th scope="row">Thời gian kết thúc</th>
                 <th><input th:text="${#dates.format(student.getDateEnd, 'yyyy-MM-dd')}" hidden/></th>
             </tr>
             </tbody>
         </table>
-        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
             Chỉnh sửa thông tin
         </button>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Cập nhật thành công
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Bạn có chắc những thông tin nhập vào là chính xác!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Xem lại</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" data-dismiss="modal">Cập nhật dữ liệu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
