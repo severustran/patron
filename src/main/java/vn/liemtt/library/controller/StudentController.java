@@ -41,6 +41,7 @@ public class StudentController {
     public String editStudent(@RequestParam( value = "studentId") String studentId, Model model) {
         StudentDTO dto = service.findByStudentId(studentId);
         model.addAttribute("student", dto);
+        model.addAttribute("status", false);
         return STUDENT_EDIT;
     }
 
@@ -48,6 +49,7 @@ public class StudentController {
     public String udpateStudent(@ModelAttribute("student") StudentDTO dto, Model model) {
         service.updateStudent(dto);
         model.addAttribute("student", dto);
+        model.addAttribute("status", true);
 //        return STUDENT_EDITED + "?studentId=" + dto.getStudentId();
         return STUDENT_DETAIL;
     }

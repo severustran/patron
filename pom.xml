@@ -17,6 +17,7 @@
         <java.version>1.8</java.version>
         <mapper.version>2.3.8</mapper.version>
         <thymeleaf-extra.version>3.0.4.RELEASE</thymeleaf-extra.version>
+        <common-csv.version>1.8</common-csv.version>
     </properties>
     <dependencies>
         <dependency>
@@ -56,6 +57,11 @@
             <version>${thymeleaf-extra.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>${common-csv.version}</version>
+        </dependency>
 
     </dependencies>
 
